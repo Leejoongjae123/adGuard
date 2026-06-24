@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"ls \\\"D:/000.FrontEnd/298.adtech/app/(admin)/settings/\\\" 2>/dev/null; echo \\\"---\\\"; ls \\\"D:/000.FrontEnd/298.adtech/components/\\\" 2>/dev/null\",\"description\":\"Check existing settings directo...",
+  "error": "Exit code 2\nguidelines/\nsystem/\nusers/\n---",
+  "timestamp": "2026-06-24T09:58:20.237Z",
+  "retry_count": 1
+}

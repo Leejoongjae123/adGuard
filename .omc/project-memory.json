@@ -1,0 +1,319 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1782294019609,
+  "projectRoot": "D:\\000.FrontEnd\\298.adtech",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "next",
+        "version": "16.2.9",
+        "category": "fullstack"
+      },
+      {
+        "name": "react",
+        "version": "19.2.4",
+        "category": "frontend"
+      },
+      {
+        "name": "react-dom",
+        "version": "19.2.4",
+        "category": "frontend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "npm run build",
+    "testCommand": null,
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "eslint"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "app",
+      "public"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "app": {
+      "path": "app",
+      "purpose": "Application code",
+      "fileCount": 4,
+      "lastAccessed": 1782294019534,
+      "keyFiles": [
+        "favicon.ico",
+        "globals.css",
+        "layout.tsx",
+        "page.tsx"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 5,
+      "lastAccessed": 1782294019535,
+      "keyFiles": [
+        "file.svg",
+        "globe.svg",
+        "next.svg",
+        "vercel.svg",
+        "window.svg"
+      ]
+    },
+    "reference": {
+      "path": "reference",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1782294019553,
+      "keyFiles": [
+        "IA.md",
+        "page1.png",
+        "page2.png",
+        "page3.png",
+        "page4.png"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "app\\(admin)\\review\\[id]\\page.tsx",
+      "accessCount": 14,
+      "lastAccessed": 1782300709600,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 10,
+      "lastAccessed": 1782295118454,
+      "type": "directory"
+    },
+    {
+      "path": "app\\(admin)\\settings\\guidelines\\page.tsx",
+      "accessCount": 10,
+      "lastAccessed": 1782300716476,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\review\\history\\page.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1782300910168,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\StatusBadge.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1782300618725,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\page.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1782300959097,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\DataTable.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782295112295,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\PageHeader.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782295112531,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\KpiCard.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782300634468,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\review\\new\\page.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782300679468,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\data\\keywords\\page.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782300695646,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\system\\page.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782300734024,
+      "type": "file"
+    },
+    {
+      "path": "app\\(auth)\\login\\page.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782300959622,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\RiskBadge.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782300626657,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\users\\page.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782300725325,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\layout.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782300828975,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\FilterBar.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1782295106430,
+      "type": "file"
+    },
+    {
+      "path": "app\\globals.css",
+      "accessCount": 3,
+      "lastAccessed": 1782300610592,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\data\\rag\\page.tsx",
+      "accessCount": 3,
+      "lastAccessed": 1782300701813,
+      "type": "file"
+    },
+    {
+      "path": "app\\layout.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782294966959,
+      "type": "file"
+    },
+    {
+      "path": "reference\\IA.md",
+      "accessCount": 1,
+      "lastAccessed": 1782294134534,
+      "type": "file"
+    },
+    {
+      "path": "reference\\page1.png",
+      "accessCount": 1,
+      "lastAccessed": 1782294135083,
+      "type": "file"
+    },
+    {
+      "path": "reference\\page2.png",
+      "accessCount": 1,
+      "lastAccessed": 1782294135553,
+      "type": "file"
+    },
+    {
+      "path": "reference\\page3.png",
+      "accessCount": 1,
+      "lastAccessed": 1782294135605,
+      "type": "file"
+    },
+    {
+      "path": "reference\\page4.png",
+      "accessCount": 1,
+      "lastAccessed": 1782294136093,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1782294136656,
+      "type": "file"
+    },
+    {
+      "path": "app\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782294149291,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\Sidebar.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782294901516,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\TopBar.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782294910062,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\review",
+      "accessCount": 1,
+      "lastAccessed": 1782300722942,
+      "type": "directory"
+    },
+    {
+      "path": "app\\(admin)\\data",
+      "accessCount": 1,
+      "lastAccessed": 1782300739513,
+      "type": "directory"
+    },
+    {
+      "path": "app\\(admin)\\settings",
+      "accessCount": 1,
+      "lastAccessed": 1782300740524,
+      "type": "directory"
+    },
+    {
+      "path": "app\\components\\SitemapFab.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782300793682,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\sitemap\\page.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782300815414,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
