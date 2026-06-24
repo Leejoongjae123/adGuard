@@ -1,8 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Key, CheckCircle, Server, HardDrive } from "lucide-react";
+import { Key, Server, HardDrive } from "lucide-react";
 import PageHeader from "../../../components/PageHeader";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import { Label } from "../../../components/ui/label";
+import { Switch } from "../../../components/ui/switch";
+import { Progress } from "../../../components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../components/ui/select";
 
 interface ApiService {
   name: string;
@@ -81,13 +87,14 @@ export default function SystemPage() {
                   {service.maskedKey}
                 </span>
               </div>
-              <button
-                className="w-full rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-slate-50"
-                style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full"
                 onClick={() => alert(`${service.name} 연결 테스트 성공`)}
               >
                 연결 테스트
-              </button>
+              </Button>
             </div>
           ))}
         </div>
@@ -143,15 +150,7 @@ export default function SystemPage() {
               ₩{totalCost.toLocaleString()} / ₩{budget.toLocaleString()} (예산)
             </span>
           </div>
-          <div
-            className="h-3 w-full overflow-hidden rounded-full"
-            style={{ background: "var(--color-bg)" }}
-          >
-            <div
-              className="h-full rounded-full transition-all"
-              style={{ width: `${budgetPercent}%`, background: "var(--color-primary)" }}
-            />
-          </div>
+          <Progress value={budgetPercent} className="h-3" />
           <p className="mt-1 text-right text-xs" style={{ color: "var(--color-text-muted)" }}>
             {budgetPercent}% 사용
           </p>
@@ -168,103 +167,66 @@ export default function SystemPage() {
         </h2>
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-5">
-          <div>
-            <label className="mb-2 block text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              업로드 용량 제한
-            </label>
+          <div className="space-y-1.5">
+            <Label style={{ color: "var(--color-text-secondary)" }}>업로드 용량 제한</Label>
             <div className="flex items-center gap-2">
-              <input
+              <Input
                 type="number"
                 value={uploadLimit}
                 onChange={(e) => setUploadLimit(Number(e.target.value))}
-                className="w-32 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2"
-                style={{
-                  borderColor: "var(--color-border)",
-                  color: "var(--color-text)",
-                  background: "var(--color-bg)",
-                }}
+                className="w-32"
               />
-              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-                MB
-              </span>
+              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>MB</span>
             </div>
           </div>
 
-          <div>
-            <label className="mb-2 block text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              동시 처리 수
-            </label>
+          <div className="space-y-1.5">
+            <Label style={{ color: "var(--color-text-secondary)" }}>동시 처리 수</Label>
             <div className="flex items-center gap-2">
-              <input
+              <Input
                 type="number"
                 value={concurrency}
                 onChange={(e) => setConcurrency(Number(e.target.value))}
-                className="w-32 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2"
-                style={{
-                  borderColor: "var(--color-border)",
-                  color: "var(--color-text)",
-                  background: "var(--color-bg)",
-                }}
+                className="w-32"
               />
-              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-                건
-              </span>
+              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>건</span>
             </div>
           </div>
 
-          <div>
-            <label className="mb-2 block text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              타임아웃
-            </label>
+          <div className="space-y-1.5">
+            <Label style={{ color: "var(--color-text-secondary)" }}>타임아웃</Label>
             <div className="flex items-center gap-2">
-              <input
+              <Input
                 type="number"
                 value={timeout}
                 onChange={(e) => setTimeout_(Number(e.target.value))}
-                className="w-32 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2"
-                style={{
-                  borderColor: "var(--color-border)",
-                  color: "var(--color-text)",
-                  background: "var(--color-bg)",
-                }}
+                className="w-32"
               />
-              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-                초
-              </span>
+              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>초</span>
             </div>
           </div>
 
-          <div>
-            <label className="mb-2 block text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              재시도 횟수
-            </label>
+          <div className="space-y-1.5">
+            <Label style={{ color: "var(--color-text-secondary)" }}>재시도 횟수</Label>
             <div className="flex items-center gap-2">
-              <input
+              <Input
                 type="number"
                 value={retryCount}
                 onChange={(e) => setRetryCount(Number(e.target.value))}
-                className="w-32 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2"
-                style={{
-                  borderColor: "var(--color-border)",
-                  color: "var(--color-text)",
-                  background: "var(--color-bg)",
-                }}
+                className="w-32"
               />
-              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-                회
-              </span>
+              <span className="text-sm" style={{ color: "var(--color-text-muted)" }}>회</span>
             </div>
           </div>
         </div>
 
         <div className="mt-5">
-          <button
-            className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+          <Button
             style={{ background: "var(--color-primary)" }}
             onClick={() => alert("설정이 저장되었습니다.")}
           >
             저장
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -278,42 +240,25 @@ export default function SystemPage() {
         </h2>
 
         <div className="space-y-5">
-          <div>
-            <label className="mb-2 block text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              소재 보관 기간
-            </label>
-            <select
-              value={retentionPeriod}
-              onChange={(e) => setRetentionPeriod(e.target.value)}
-              className="w-48 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2"
-              style={{
-                borderColor: "var(--color-border)",
-                color: "var(--color-text)",
-                background: "var(--color-bg)",
-              }}
-            >
-              <option value="30">30일</option>
-              <option value="60">60일</option>
-              <option value="90">90일</option>
-              <option value="180">180일</option>
-              <option value="365">365일</option>
-            </select>
+          <div className="space-y-1.5">
+            <Label style={{ color: "var(--color-text-secondary)" }}>소재 보관 기간</Label>
+            <Select value={retentionPeriod} onValueChange={(v) => { if (v !== null) setRetentionPeriod(v); }}>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="기간 선택" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="30">30일</SelectItem>
+                <SelectItem value="60">60일</SelectItem>
+                <SelectItem value="90">90일</SelectItem>
+                <SelectItem value="180">180일</SelectItem>
+                <SelectItem value="365">365일</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex items-center gap-3">
-            <label className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              자동 삭제
-            </label>
-            <button
-              onClick={() => setAutoDelete(!autoDelete)}
-              className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors"
-              style={{ background: autoDelete ? "var(--color-primary)" : "#CBD5E1" }}
-            >
-              <span
-                className="inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform"
-                style={{ transform: autoDelete ? "translateX(24px)" : "translateX(4px)" }}
-              />
-            </button>
+            <Label style={{ color: "var(--color-text-secondary)" }}>자동 삭제</Label>
+            <Switch checked={autoDelete} onCheckedChange={setAutoDelete} />
             <span className="text-xs" style={{ color: "var(--color-text-muted)" }}>
               {autoDelete ? "활성" : "비활성"}
             </span>
@@ -321,13 +266,12 @@ export default function SystemPage() {
         </div>
 
         <div className="mt-5">
-          <button
-            className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+          <Button
             style={{ background: "var(--color-primary)" }}
             onClick={() => alert("설정이 저장되었습니다.")}
           >
             저장
-          </button>
+          </Button>
         </div>
       </div>
     </div>

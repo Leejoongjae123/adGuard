@@ -1,6 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { Search } from "lucide-react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { Label } from "./ui/label";
+import { DatePicker } from "./ui/date-picker";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface FilterOption {
   label: string;
@@ -26,64 +38,88 @@ export default function FilterBar({
   filters = [],
   onSearch,
 }: FilterBarProps) {
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [dates, setDates] = useState<Record<string, Date | undefined>>({});
+
   return (
     <div
       className="rounded-xl border p-4"
       style={{ background: "var(--color-card)", borderColor: "var(--color-border)" }}
     >
-      <div className="flex flex-wrap items-end gap-3">
-        {/* Search */}
-        <div className="flex-1 min-w-[240px]">
-          <label className="mb-1 block text-xs font-medium" style={{ color: "var(--color-text-secondary)" }}>
+      {/* Labels row */}
+      <div className="flex flex-wrap gap-3 mb-1.5">
+        <div className="flex-1 min-w-[220px]">
+          <Label className="text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
             키워드
-          </label>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder={searchPlaceholder}
-              className="h-9 w-full rounded-lg border pl-9 pr-3 text-sm outline-none transition-colors focus:border-blue-400 focus:ring-1 focus:ring-blue-100"
-              style={{ borderColor: "var(--color-border)", background: "var(--color-card)" }}
-            />
+          </Label>
+        </div>
+        {filters.map((filter) => (
+          <div key={filter.name} className="min-w-[140px]">
+            <Label className="text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
+              {filter.label}
+            </Label>
           </div>
+        ))}
+        {/* spacer matching button width */}
+        <div className="w-[78px]" />
+      </div>
+
+      {/* Controls row — all items same height, items-center guarantees vertical alignment */}
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="relative flex-1 min-w-[220px]">
+          <Search
+            className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 pointer-events-none"
+            style={{ color: "var(--color-text-muted)" }}
+          />
+          <Input
+            type="text"
+            placeholder={searchPlaceholder}
+            className="pl-9 h-9 text-sm"
+          />
         </div>
 
-        {/* Filter dropdowns */}
         {filters.map((filter) => (
-          <div key={filter.name} className="min-w-[120px]">
-            <label className="mb-1 block text-xs font-medium" style={{ color: "var(--color-text-secondary)" }}>
-              {filter.label}
-            </label>
+          <div key={filter.name} className="min-w-[140px]">
             {filter.type === "select" ? (
-              <select
-                className="h-9 w-full rounded-lg border px-3 text-sm outline-none transition-colors focus:border-blue-400"
-                style={{ borderColor: "var(--color-border)", background: "var(--color-card)" }}
+              <Select
+                value={values[filter.name] ?? ""}
+                onValueChange={(v) =>
+                  setValues((prev) => ({ ...prev, [filter.name]: v ?? "" }))
+                }
               >
-                <option value="">전체</option>
-                {filter.options?.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder={filter.placeholder ?? "전체"} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">전체</SelectItem>
+                  {filter.options?.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             ) : (
-              <input
-                type="date"
-                className="h-9 w-full rounded-lg border px-3 text-sm outline-none transition-colors focus:border-blue-400"
-                style={{ borderColor: "var(--color-border)", background: "var(--color-card)" }}
+              <DatePicker
+                value={dates[filter.name]}
+                onChange={(date) =>
+                  setDates((prev) => ({ ...prev, [filter.name]: date }))
+                }
+                placeholder={filter.placeholder ?? "날짜 선택"}
               />
             )}
           </div>
         ))}
 
-        <button
+        <Button
           onClick={onSearch}
-          className="h-9 rounded-lg px-5 text-sm font-medium text-white transition-colors hover:opacity-90"
+          size="sm"
+          className="h-9 px-5"
           style={{ background: "var(--color-primary)" }}
         >
-          <Search className="mr-1.5 inline h-3.5 w-3.5" />
+          <Search className="h-3.5 w-3.5 mr-1.5" />
           조회
-        </button>
+        </Button>
       </div>
     </div>
   );

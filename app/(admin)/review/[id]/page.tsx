@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Play, Eye, EyeOff, Copy, Check, ChevronLeft, Clock, User } from "lucide-react";
+import { Play, Eye, EyeOff, Copy, Check, ChevronLeft, Clock } from "lucide-react";
 import RiskBadge from "../../../components/RiskBadge";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../../components/ui/tabs";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
 
 type TabKey = "text" | "violations" | "alternatives" | "similar";
 
@@ -134,14 +137,16 @@ export default function ReviewDetailPage() {
     <div className="flex flex-col" style={{ minHeight: "calc(100vh - 120px)" }}>
       {/* Top Bar */}
       <div className="mb-4 flex items-center gap-3">
-        <button
-          className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-slate-100"
+        <Button
+          variant="ghost"
+          size="sm"
+          className="gap-1"
           style={{ color: "var(--color-text-secondary)" }}
           onClick={() => router.push("/review/history")}
         >
           <ChevronLeft className="h-4 w-4" />
           목록으로
-        </button>
+        </Button>
         <div className="h-4 w-px bg-slate-200" />
         <h1 className="text-lg font-bold" style={{ color: "var(--color-text)" }}>
           Summer_Campaign_15s_v3.mp4
@@ -178,7 +183,7 @@ export default function ReviewDetailPage() {
                 </>
               )}
             </div>
-            {/* Overlay Toggle */}
+            {/* Overlay Toggle — kept as raw button (absolute-positioned video UI) */}
             <button
               onClick={() => setOverlayOn(!overlayOn)}
               className="absolute right-3 top-3 flex items-center gap-1.5 rounded-lg bg-black/50 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/70"
@@ -264,201 +269,196 @@ export default function ReviewDetailPage() {
             className="flex-1 overflow-hidden rounded-xl border"
             style={{ background: "var(--color-card)", borderColor: "var(--color-border)" }}
           >
-            {/* Tab Buttons */}
-            <div className="flex border-b" style={{ borderColor: "var(--color-border)" }}>
-              {tabs.map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={`flex-1 px-4 py-2.5 text-sm font-medium transition-colors ${
-                    activeTab === tab.key
-                      ? "border-b-2 text-blue-600"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
-                  style={activeTab === tab.key ? { borderBottomColor: "var(--color-primary)" } : {}}
-                >
-                  {tab.label}
-                  {tab.key === "violations" && (
-                    <span className="ml-1 inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-600 text-[10px] text-white">
-                      {violations.length}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
+            <Tabs value={activeTab} onValueChange={(val: string) => setActiveTab(val as TabKey)}>
+              <TabsList
+                variant="line"
+                className="w-full h-auto border-b rounded-none px-4 justify-start gap-0"
+                style={{ borderColor: "var(--color-border)", background: "transparent" }}
+              >
+                {tabs.map((tab) => (
+                  <TabsTrigger
+                    key={tab.key}
+                    value={tab.key}
+                    className="rounded-none px-3 py-2.5 text-sm data-active:text-blue-600"
+                  >
+                    {tab.label}
+                    {tab.key === "violations" && (
+                      <span className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-500 text-[10px] text-white data-active:bg-blue-600">
+                        {violations.length}
+                      </span>
+                    )}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
 
-            {/* Tab Content */}
-            <div className="max-h-[480px] overflow-y-auto p-4">
-              {/* 추출 텍스트 Tab */}
-              {activeTab === "text" && (
-                <div className="space-y-3">
-                  {extractedTexts.map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-3 rounded-lg border p-3"
-                      style={{ borderColor: "var(--color-border)" }}
-                    >
-                      <div className="flex flex-col items-center gap-1">
-                        <Clock className="h-3.5 w-3.5 text-slate-400" />
-                        <span className="text-[11px] font-mono" style={{ color: "var(--color-text-muted)" }}>
-                          {item.time}
-                        </span>
-                      </div>
-                      <div className="flex-1">
-                        <span
-                          className={`inline-block rounded px-1.5 py-0.5 text-[10px] font-medium ${
-                            item.type === "자막" ? "bg-blue-50 text-blue-700" : "bg-blue-100 text-blue-700"
-                          }`}
-                        >
-                          {item.type}
-                        </span>
-                        <p className="mt-1 text-sm" style={{ color: "var(--color-text)" }}>
-                          {item.text}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* 위반 항목 Tab */}
-              {activeTab === "violations" && (
-                <div className="space-y-3">
-                  {violations.map((v) => (
-                    <div
-                      key={v.id}
-                      className="rounded-lg border p-3"
-                      style={{ borderColor: "var(--color-border)" }}
-                    >
-                      <div className="mb-2 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-600">
-                            {v.category}
-                          </span>
-                          <span className="text-xs font-semibold" style={{ color: "var(--color-text)" }}>
-                            {v.rule}
+              <div className="max-h-[480px] overflow-y-auto p-4">
+                <TabsContent value="text">
+                  <div className="space-y-3">
+                    {extractedTexts.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex gap-3 rounded-lg border p-3"
+                        style={{ borderColor: "var(--color-border)" }}
+                      >
+                        <div className="flex flex-col items-center gap-1">
+                          <Clock className="h-3.5 w-3.5 text-slate-400" />
+                          <span className="text-[11px] font-mono" style={{ color: "var(--color-text-muted)" }}>
+                            {item.time}
                           </span>
                         </div>
-                        <RiskBadge score={v.score} size="sm" />
-                      </div>
-                      <p className="text-sm" style={{ color: "var(--color-text)" }}>
-                        {highlightKeyword(v.text, v.keyword)}
-                      </p>
-                      <p className="mt-1 text-xs" style={{ color: "var(--color-text-muted)" }}>
-                        {v.detail}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* 대체 문구 Tab */}
-              {activeTab === "alternatives" && (
-                <div className="space-y-4">
-                  {alternatives.map((alt) => (
-                    <div
-                      key={alt.violationId}
-                      className="rounded-lg border p-3"
-                      style={{ borderColor: "var(--color-border)" }}
-                    >
-                      <p className="text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
-                        원문
-                      </p>
-                      <p
-                        className="mt-0.5 rounded bg-slate-100 px-2 py-1 text-sm text-slate-500 line-through"
-                        style={{ color: "var(--color-text)" }}
-                      >
-                        {alt.original}
-                      </p>
-                      <p className="mt-3 text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
-                        대체 제안
-                      </p>
-                      <div className="mt-1 space-y-2">
-                        {alt.suggestions.map((sug, si) => (
-                          <div
-                            key={si}
-                            className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2"
+                        <div className="flex-1">
+                          <span
+                            className={`inline-block rounded px-1.5 py-0.5 text-[10px] font-medium ${
+                              item.type === "자막" ? "bg-blue-50 text-blue-700" : "bg-blue-100 text-blue-700"
+                            }`}
                           >
-                            <span className="text-sm text-blue-700 font-medium">{sug}</span>
-                            <div className="flex items-center gap-1">
-                              <button
-                                className="rounded px-2 py-1 text-xs font-medium text-white transition-colors hover:opacity-90"
-                                style={{ background: "var(--color-primary)" }}
-                                onClick={() => alert("대체 문구가 적용되었습니다.")}
-                              >
-                                적용
-                              </button>
-                              <button
-                                onClick={() => handleCopy(sug, `${alt.violationId}-${si}`)}
-                                className="rounded border px-2 py-1 text-xs font-medium transition-colors hover:bg-slate-50"
-                                style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
-                              >
-                                {copiedIdx === `${alt.violationId}-${si}` ? (
-                                  <Check className="inline h-3 w-3 text-blue-500" />
-                                ) : (
-                                  <Copy className="inline h-3 w-3" />
-                                )}
-                              </button>
-                            </div>
-                          </div>
-                        ))}
+                            {item.type}
+                          </span>
+                          <p className="mt-1 text-sm" style={{ color: "var(--color-text)" }}>
+                            {item.text}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                </TabsContent>
 
-              {/* 유사 사례 Tab */}
-              {activeTab === "similar" && (
-                <div className="overflow-hidden rounded-lg border" style={{ borderColor: "var(--color-border)" }}>
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr style={{ background: "var(--color-bg)" }}>
-                        <th className="px-3 py-2 text-left text-xs font-semibold" style={{ color: "var(--color-text-secondary)" }}>소재명</th>
-                        <th className="px-3 py-2 text-center text-xs font-semibold" style={{ color: "var(--color-text-secondary)", width: "70px" }}>유사도</th>
-                        <th className="px-3 py-2 text-center text-xs font-semibold" style={{ color: "var(--color-text-secondary)", width: "60px" }}>결과</th>
-                        <th className="px-3 py-2 text-left text-xs font-semibold" style={{ color: "var(--color-text-secondary)" }}>사유</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {similarCases.map((sc) => (
-                        <tr key={sc.id} className="border-t" style={{ borderColor: "var(--color-border)" }}>
-                          <td className="px-3 py-2" style={{ color: "var(--color-text)" }}>
-                            <p className="text-sm">{sc.name}</p>
-                            <p className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>{sc.id}</p>
-                          </td>
-                          <td className="px-3 py-2 text-center">
-                            <span
-                              className={`text-sm font-bold ${
-                                sc.similarity >= 90 ? "text-blue-800" : sc.similarity >= 75 ? "text-blue-600" : "text-slate-600"
-                              }`}
-                            >
-                              {sc.similarity}%
+                <TabsContent value="violations">
+                  <div className="space-y-3">
+                    {violations.map((v) => (
+                      <div
+                        key={v.id}
+                        className="rounded-lg border p-3"
+                        style={{ borderColor: "var(--color-border)" }}
+                      >
+                        <div className="mb-2 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-600">
+                              {v.category}
                             </span>
-                          </td>
-                          <td className="px-3 py-2 text-center">
-                            <span
-                              className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                                sc.result === "반려"
-                                  ? "bg-slate-700 text-white"
-                                  : sc.result === "보류"
-                                  ? "bg-slate-200 text-slate-700"
-                                  : "bg-blue-50 text-blue-700"
-                              }`}
-                            >
-                              {sc.result}
+                            <span className="text-xs font-semibold" style={{ color: "var(--color-text)" }}>
+                              {v.rule}
                             </span>
-                          </td>
-                          <td className="px-3 py-2 text-xs" style={{ color: "var(--color-text-secondary)" }}>
-                            {sc.reason}
-                          </td>
+                          </div>
+                          <RiskBadge score={v.score} size="sm" />
+                        </div>
+                        <p className="text-sm" style={{ color: "var(--color-text)" }}>
+                          {highlightKeyword(v.text, v.keyword)}
+                        </p>
+                        <p className="mt-1 text-xs" style={{ color: "var(--color-text-muted)" }}>
+                          {v.detail}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="alternatives">
+                  <div className="space-y-4">
+                    {alternatives.map((alt) => (
+                      <div
+                        key={alt.violationId}
+                        className="rounded-lg border p-3"
+                        style={{ borderColor: "var(--color-border)" }}
+                      >
+                        <p className="text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
+                          원문
+                        </p>
+                        <p
+                          className="mt-0.5 rounded bg-slate-100 px-2 py-1 text-sm text-slate-500 line-through"
+                          style={{ color: "var(--color-text)" }}
+                        >
+                          {alt.original}
+                        </p>
+                        <p className="mt-3 text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
+                          대체 제안
+                        </p>
+                        <div className="mt-1 space-y-2">
+                          {alt.suggestions.map((sug, si) => (
+                            <div
+                              key={si}
+                              className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2"
+                            >
+                              <span className="text-sm text-blue-700 font-medium">{sug}</span>
+                              <div className="flex items-center gap-1">
+                                <Button
+                                  size="xs"
+                                  style={{ background: "var(--color-primary)" }}
+                                  onClick={() => alert("대체 문구가 적용되었습니다.")}
+                                >
+                                  적용
+                                </Button>
+                                <Button
+                                  variant="outline"
+                                  size="xs"
+                                  onClick={() => handleCopy(sug, `${alt.violationId}-${si}`)}
+                                >
+                                  {copiedIdx === `${alt.violationId}-${si}` ? (
+                                    <Check className="h-3 w-3 text-blue-500" />
+                                  ) : (
+                                    <Copy className="h-3 w-3" />
+                                  )}
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="similar">
+                  <div className="overflow-hidden rounded-lg border" style={{ borderColor: "var(--color-border)" }}>
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr style={{ background: "var(--color-bg)" }}>
+                          <th className="px-3 py-2 text-left text-xs font-semibold" style={{ color: "var(--color-text-secondary)" }}>소재명</th>
+                          <th className="px-3 py-2 text-center text-xs font-semibold" style={{ color: "var(--color-text-secondary)", width: "70px" }}>유사도</th>
+                          <th className="px-3 py-2 text-center text-xs font-semibold" style={{ color: "var(--color-text-secondary)", width: "60px" }}>결과</th>
+                          <th className="px-3 py-2 text-left text-xs font-semibold" style={{ color: "var(--color-text-secondary)" }}>사유</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
+                      </thead>
+                      <tbody>
+                        {similarCases.map((sc) => (
+                          <tr key={sc.id} className="border-t" style={{ borderColor: "var(--color-border)" }}>
+                            <td className="px-3 py-2" style={{ color: "var(--color-text)" }}>
+                              <p className="text-sm">{sc.name}</p>
+                              <p className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>{sc.id}</p>
+                            </td>
+                            <td className="px-3 py-2 text-center">
+                              <span
+                                className={`text-sm font-bold ${
+                                  sc.similarity >= 90 ? "text-blue-800" : sc.similarity >= 75 ? "text-blue-600" : "text-slate-600"
+                                }`}
+                              >
+                                {sc.similarity}%
+                              </span>
+                            </td>
+                            <td className="px-3 py-2 text-center">
+                              <span
+                                className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${
+                                  sc.result === "반려"
+                                    ? "bg-slate-700 text-white"
+                                    : sc.result === "보류"
+                                    ? "bg-slate-200 text-slate-700"
+                                    : "bg-blue-50 text-blue-700"
+                                }`}
+                              >
+                                {sc.result}
+                              </span>
+                            </td>
+                            <td className="px-3 py-2 text-xs" style={{ color: "var(--color-text-secondary)" }}>
+                              {sc.reason}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </TabsContent>
+              </div>
+            </Tabs>
           </div>
         </div>
       </div>
@@ -468,43 +468,43 @@ export default function ReviewDetailPage() {
         className="mt-5 flex items-center gap-3 rounded-xl border p-4"
         style={{ background: "var(--color-card)", borderColor: "var(--color-border)" }}
       >
-        <input
-          type="text"
+        <Input
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="코멘트를 입력하세요..."
-          className="h-10 flex-1 rounded-lg border px-4 text-sm outline-none transition-colors focus:border-blue-400 focus:ring-1 focus:ring-blue-100"
-          style={{ borderColor: "var(--color-border)", background: "var(--color-bg)" }}
+          className="h-10 flex-1"
         />
         <div className="flex items-center gap-2">
-          <button
-            className={`h-10 rounded-lg bg-blue-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-700 ${verdict === "통과" ? "ring-2 ring-blue-400 ring-offset-2" : ""}`}
+          <Button
+            className={`h-10 px-6 ${verdict === "통과" ? "ring-2 ring-blue-400 ring-offset-2" : ""}`}
+            style={{ background: "var(--color-primary)" }}
             onClick={() => {
               setVerdict("통과");
               alert("통과(으)로 판정되었습니다.");
             }}
           >
             통과
-          </button>
-          <button
-            className={`h-10 rounded-lg border px-6 text-sm font-semibold transition-colors hover:bg-slate-50 ${verdict === "보류" ? "ring-2 ring-slate-400 ring-offset-2" : ""}`}
-            style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+          </Button>
+          <Button
+            variant="outline"
+            className={`h-10 px-6 ${verdict === "보류" ? "ring-2 ring-slate-400 ring-offset-2" : ""}`}
             onClick={() => {
               setVerdict("보류");
               alert("보류(으)로 판정되었습니다.");
             }}
           >
             보류
-          </button>
-          <button
-            className={`h-10 rounded-lg bg-slate-700 px-6 text-sm font-semibold text-white transition-colors hover:bg-slate-800 ${verdict === "반려" ? "ring-2 ring-slate-400 ring-offset-2" : ""}`}
+          </Button>
+          <Button
+            className={`h-10 px-6 ${verdict === "반려" ? "ring-2 ring-slate-400 ring-offset-2" : ""}`}
+            style={{ background: "#334155" }}
             onClick={() => {
               setVerdict("반려");
               alert("반려(으)로 판정되었습니다.");
             }}
           >
             반려
-          </button>
+          </Button>
         </div>
       </div>
     </div>

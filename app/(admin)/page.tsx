@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FileText, ShieldCheck, AlertTriangle, Clock, Plus } from "lucide-react";
 import PageHeader from "../components/PageHeader";
+import { Button } from "../components/ui/button";
 import KpiCard from "../components/KpiCard";
 import DataTable from "../components/DataTable";
 import type { Column } from "../components/DataTable";
@@ -72,22 +73,20 @@ const recentReviews: ReviewRow[] = [
 ];
 
 const columns: Column<ReviewRow>[] = [
-  { key: "name", header: "소재명", width: "28%" },
-  { key: "type", header: "유형", width: "8%" },
+  { key: "name", header: "소재명", width: "30%" },
+  { key: "type", header: "유형" },
   {
     key: "riskScore",
     header: "위험점수",
-    width: "12%",
     render: (row) => <RiskBadge score={row.riskScore} />,
   },
   {
     key: "status",
     header: "판정",
-    width: "10%",
     render: (row) => <StatusBadge status={row.status} />,
   },
-  { key: "date", header: "검수일", width: "12%" },
-  { key: "reviewer", header: "담당자", width: "10%" },
+  { key: "date", header: "검수일" },
+  { key: "reviewer", header: "담당자" },
 ];
 
 /* ── Page ──────────────────────────────────────────────── */
@@ -103,13 +102,11 @@ export default function DashboardPage() {
         title="대시보드"
         description={`${dateStr} 기준`}
         actions={
-          <Link
-            href="/review/new"
-            className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            style={{ background: "var(--color-primary)" }}
-          >
-            <Plus className="h-4 w-4" />
-            신규 검수 시작
+          <Link href="/review/new">
+            <Button style={{ background: "var(--color-primary)" }} className="gap-1.5">
+              <Plus className="h-4 w-4" />
+              신규 검수 시작
+            </Button>
           </Link>
         }
       />

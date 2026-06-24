@@ -5,6 +5,11 @@ import PageHeader from "../../../components/PageHeader";
 import DataTable from "../../../components/DataTable";
 import type { Column } from "../../../components/DataTable";
 import StatusBadge from "../../../components/StatusBadge";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import { Label } from "../../../components/ui/label";
+import { Textarea } from "../../../components/ui/textarea";
+import { Tabs, TabsList, TabsTrigger } from "../../../components/ui/tabs";
 
 type PromptTab = "시스템 프롬프트" | "판정 프롬프트" | "대체 문구 생성";
 
@@ -69,8 +74,6 @@ export default function GuidelinesPage() {
   const [dangerThreshold, setDangerThreshold] = useState(71);
   const [correctionFactor, setCorrectionFactor] = useState(1.0);
 
-  const tabs: PromptTab[] = ["시스템 프롬프트", "판정 프롬프트", "대체 문구 생성"];
-
   return (
     <div className="space-y-6">
       <PageHeader
@@ -90,33 +93,19 @@ export default function GuidelinesPage() {
           </h2>
 
           {/* Tab buttons */}
-          <div className="mb-4 flex gap-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className="rounded-lg px-4 py-2 text-sm font-medium transition-colors"
-                style={{
-                  background: activeTab === tab ? "var(--color-primary)" : "var(--color-bg)",
-                  color: activeTab === tab ? "#ffffff" : "var(--color-text-secondary)",
-                  border: activeTab === tab ? "none" : "1px solid var(--color-border)",
-                }}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+          <Tabs value={activeTab} onValueChange={(val) => setActiveTab(val as PromptTab)}>
+            <TabsList className="mb-4">
+              <TabsTrigger value="시스템 프롬프트">시스템 프롬프트</TabsTrigger>
+              <TabsTrigger value="판정 프롬프트">판정 프롬프트</TabsTrigger>
+              <TabsTrigger value="대체 문구 생성">대체 문구 생성</TabsTrigger>
+            </TabsList>
+          </Tabs>
 
           {/* Textarea */}
-          <textarea
+          <Textarea
             value={promptText}
             onChange={(e) => setPromptText(e.target.value)}
-            className="h-64 w-full rounded-lg border p-4 text-sm leading-relaxed focus:outline-none focus:ring-2"
-            style={{
-              borderColor: "var(--color-border)",
-              color: "var(--color-text)",
-              background: "var(--color-bg)",
-            }}
+            className="h-64 font-mono text-sm leading-relaxed"
           />
 
           {/* Version info */}
@@ -126,27 +115,24 @@ export default function GuidelinesPage() {
 
           {/* Buttons */}
           <div className="mt-4 flex gap-3">
-            <button
-              className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+            <Button
               style={{ background: "var(--color-primary)" }}
               onClick={() => alert("프롬프트가 저장되었습니다.")}
             >
               저장
-            </button>
-            <button
-              className="rounded-lg border px-5 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+            </Button>
+            <Button
+              variant="outline"
               onClick={() => alert("이전 버전 목록을 불러옵니다.")}
             >
               이전 버전
-            </button>
-            <button
-              className="rounded-lg border px-5 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+            </Button>
+            <Button
+              variant="outline"
               onClick={() => alert("이전 버전으로 롤백되었습니다.")}
             >
               롤백
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -159,28 +145,23 @@ export default function GuidelinesPage() {
             프롬프트 테스트
           </h2>
 
-          <label className="mb-2 block text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>
+          <Label className="mb-2 block font-medium" style={{ color: "var(--color-text-secondary)" }}>
             테스트 텍스트
-          </label>
-          <textarea
+          </Label>
+          <Textarea
             value={testText}
             onChange={(e) => setTestText(e.target.value)}
             placeholder="테스트할 광고 문구를 입력하세요..."
-            className="h-28 w-full rounded-lg border p-3 text-sm focus:outline-none focus:ring-2"
-            style={{
-              borderColor: "var(--color-border)",
-              color: "var(--color-text)",
-              background: "var(--color-bg)",
-            }}
+            className="h-28 text-sm"
           />
 
-          <button
-            className="mt-3 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
+          <Button
+            className="mt-3 w-full"
             style={{ background: "var(--color-primary)" }}
             onClick={() => alert("테스트가 실행되었습니다. 결과를 확인하세요.")}
           >
             테스트 실행
-          </button>
+          </Button>
 
           {/* Results area */}
           <div className="mt-5">
@@ -262,9 +243,7 @@ export default function GuidelinesPage() {
               {/* 주의 경계 */}
               <div>
                 <div className="mb-2 flex items-center justify-between">
-                  <label className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
-                    주의 경계
-                  </label>
+                  <Label style={{ color: "var(--color-text-secondary)" }}>주의 경계</Label>
                   <span className="text-sm font-semibold" style={{ color: "var(--color-primary)" }}>
                     {cautionThreshold}%
                   </span>
@@ -282,9 +261,7 @@ export default function GuidelinesPage() {
               {/* 위험 경계 */}
               <div>
                 <div className="mb-2 flex items-center justify-between">
-                  <label className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
-                    위험 경계
-                  </label>
+                  <Label style={{ color: "var(--color-text-secondary)" }}>위험 경계</Label>
                   <span className="text-sm font-semibold text-blue-800">{dangerThreshold}%</span>
                 </div>
                 <input
@@ -300,21 +277,14 @@ export default function GuidelinesPage() {
           </div>
 
           {/* 점수 보정 계수 */}
-          <div>
-            <label className="mb-2 block text-sm" style={{ color: "var(--color-text-secondary)" }}>
-              점수 보정 계수
-            </label>
-            <input
+          <div className="space-y-1.5">
+            <Label style={{ color: "var(--color-text-secondary)" }}>점수 보정 계수</Label>
+            <Input
               type="number"
               step="0.1"
               value={correctionFactor}
               onChange={(e) => setCorrectionFactor(Number(e.target.value))}
-              className="w-32 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2"
-              style={{
-                borderColor: "var(--color-border)",
-                color: "var(--color-text)",
-                background: "var(--color-bg)",
-              }}
+              className="w-32"
             />
           </div>
         </div>

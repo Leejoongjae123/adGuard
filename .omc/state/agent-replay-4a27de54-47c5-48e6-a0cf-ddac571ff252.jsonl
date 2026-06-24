@@ -1,0 +1,10 @@
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"frontend-design"}
+{"t":0,"agent":"af7f86a","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a0c16eb","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a790643","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a0c16eb","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":222587}
+{"t":0,"agent":"a790643","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":314120}
+{"t":0,"agent":"af7f86a","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":490491}
+{"t":0,"agent":"ae742f7","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"frontend-design"}
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"frontend-design"}

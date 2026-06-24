@@ -2,6 +2,9 @@
 
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
+import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/button";
 
 export interface Column<T> {
   key: string;
@@ -41,62 +44,59 @@ export default function DataTable<T extends Record<string, unknown>>({
       style={{ background: "var(--color-card)", borderColor: "var(--color-border)" }}
     >
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr style={{ background: "var(--color-bg)", borderBottom: "1px solid var(--color-border)" }}>
+        <Table className="table-fixed">
+          <TableHeader>
+            <TableRow style={{ background: "var(--color-bg)", borderColor: "var(--color-border)" }}>
               {checkbox && (
-                <th className="w-10 px-4 py-3">
-                  <input type="checkbox" className="rounded" />
-                </th>
+                <TableHead className="w-10 px-4 text-center">
+                  <Checkbox />
+                </TableHead>
               )}
               {columns.map((col) => (
-                <th
+                <TableHead
                   key={col.key}
-                  className="px-4 py-3 text-left text-xs font-semibold"
+                  className="text-center"
                   style={{ color: "var(--color-text-secondary)", width: col.width }}
                 >
                   {col.header}
-                </th>
+                </TableHead>
               ))}
-            </tr>
-          </thead>
-          <tbody>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {data.length === 0 ? (
-              <tr>
-                <td
+              <TableRow>
+                <TableCell
                   colSpan={columns.length + (checkbox ? 1 : 0)}
-                  className="px-4 py-16 text-center text-sm"
+                  className="py-16 text-center text-sm"
                   style={{ color: "var(--color-text-muted)" }}
                 >
                   {emptyMessage}
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ) : (
               data.map((row, i) => (
-                <tr
+                <TableRow
                   key={i}
                   onClick={() => onRowClick?.(row)}
-                  className={clsx(
-                    "border-t transition-colors",
-                    onRowClick && "cursor-pointer hover:bg-slate-50"
-                  )}
+                  className={clsx(onRowClick && "cursor-pointer")}
                   style={{ borderColor: "var(--color-border)" }}
                 >
                   {checkbox && (
-                    <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
-                      <input type="checkbox" className="rounded" />
-                    </td>
+                    <TableCell className="w-10 px-4 text-center" onClick={(e) => e.stopPropagation()}>
+                      <Checkbox />
+                    </TableCell>
                   )}
                   {columns.map((col) => (
-                    <td key={col.key} className="px-4 py-3 text-sm" style={{ color: "var(--color-text)" }}>
+                    <TableCell key={col.key} className="text-center" style={{ color: "var(--color-text)" }}>
                       {col.render ? col.render(row, i) : String(row[col.key] ?? "")}
-                    </td>
+                    </TableCell>
                   ))}
-                </tr>
+                </TableRow>
               ))
             )}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
 
       {/* Pagination */}
@@ -109,23 +109,25 @@ export default function DataTable<T extends Record<string, unknown>>({
             총 {totalCount}건
           </p>
           <div className="flex items-center gap-1">
-            <button
+            <Button
+              variant="ghost"
+              size="icon-sm"
               disabled={currentPage <= 1}
               onClick={() => onPageChange?.(currentPage - 1)}
-              className="rounded-md p-1.5 text-slate-400 transition-colors hover:bg-slate-100 disabled:opacity-40"
             >
               <ChevronLeft className="h-4 w-4" />
-            </button>
+            </Button>
             <span className="px-3 text-xs font-medium" style={{ color: "var(--color-text-secondary)" }}>
               {currentPage} / {totalPages}
             </span>
-            <button
+            <Button
+              variant="ghost"
+              size="icon-sm"
               disabled={currentPage >= totalPages}
               onClick={() => onPageChange?.(currentPage + 1)}
-              className="rounded-md p-1.5 text-slate-400 transition-colors hover:bg-slate-100 disabled:opacity-40"
             >
               <ChevronRight className="h-4 w-4" />
-            </button>
+            </Button>
           </div>
         </div>
       )}

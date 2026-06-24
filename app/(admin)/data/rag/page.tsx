@@ -6,6 +6,8 @@ import KpiCard from "../../../components/KpiCard";
 import DataTable from "../../../components/DataTable";
 import type { Column } from "../../../components/DataTable";
 import StatusBadge from "../../../components/StatusBadge";
+import { Button } from "../../../components/ui/button";
+import { Progress } from "../../../components/ui/progress";
 
 interface HistoryRow extends Record<string, unknown> {
   text: string;
@@ -58,22 +60,24 @@ export default function RagPage() {
         description="RAG 학습에 사용되는 과거 심사 데이터를 관리합니다"
         actions={
           <>
-            <button
-              className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5"
               onClick={() => alert("엑셀 파일 업로드 기능은 준비 중입니다.")}
             >
               <Upload className="h-4 w-4" />
               엑셀 업로드
-            </button>
-            <button
-              className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5"
               onClick={() => alert("재인덱싱이 시작되었습니다.")}
             >
               <RefreshCw className="h-4 w-4" />
               재인덱싱
-            </button>
+            </Button>
           </>
         }
       />
@@ -97,12 +101,7 @@ export default function RagPage() {
           </h3>
           <span className="text-xs font-medium text-blue-600">100% 완료</span>
         </div>
-        <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
-          <div
-            className="h-full rounded-full transition-all"
-            style={{ width: "100%", background: "var(--color-primary)" }}
-          />
-        </div>
+        <Progress value={100} className="h-2.5 mt-3" />
         <p className="mt-2 text-xs" style={{ color: "var(--color-text-secondary)" }}>
           2,847 / 2,847건 처리 완료
         </p>

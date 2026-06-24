@@ -111,123 +111,195 @@
   },
   "hotPaths": [
     {
+      "path": "app\\(admin)\\review\\new\\page.tsx",
+      "accessCount": 36,
+      "lastAccessed": 1782317392359,
+      "type": "file"
+    },
+    {
       "path": "app\\(admin)\\review\\[id]\\page.tsx",
-      "accessCount": 21,
-      "lastAccessed": 1782301080281,
+      "accessCount": 30,
+      "lastAccessed": 1782317941155,
       "type": "file"
     },
     {
       "path": "app\\(admin)\\settings\\guidelines\\page.tsx",
-      "accessCount": 15,
-      "lastAccessed": 1782301089845,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\page.tsx",
-      "accessCount": 12,
-      "lastAccessed": 1782301073261,
-      "type": "file"
-    },
-    {
-      "path": "",
-      "accessCount": 11,
-      "lastAccessed": 1782301014352,
-      "type": "directory"
-    },
-    {
-      "path": "app\\(admin)\\review\\new\\page.tsx",
-      "accessCount": 11,
-      "lastAccessed": 1782301064657,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\settings\\system\\page.tsx",
-      "accessCount": 10,
-      "lastAccessed": 1782301125424,
+      "accessCount": 18,
+      "lastAccessed": 1782317202120,
       "type": "file"
     },
     {
       "path": "app\\(admin)\\data\\keywords\\page.tsx",
-      "accessCount": 9,
-      "lastAccessed": 1782301060221,
+      "accessCount": 18,
+      "lastAccessed": 1782317813855,
       "type": "file"
     },
     {
-      "path": "app\\(admin)\\review\\history\\page.tsx",
-      "accessCount": 8,
-      "lastAccessed": 1782300961161,
-      "type": "file"
-    },
-    {
-      "path": "app\\(auth)\\login\\page.tsx",
-      "accessCount": 8,
-      "lastAccessed": 1782301031847,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\settings\\users\\page.tsx",
-      "accessCount": 8,
-      "lastAccessed": 1782301102813,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\StatusBadge.tsx",
-      "accessCount": 6,
-      "lastAccessed": 1782300618725,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\data\\rag\\page.tsx",
-      "accessCount": 6,
-      "lastAccessed": 1782301068602,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\DataTable.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782295112295,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\PageHeader.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782295112531,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\KpiCard.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782300634468,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\RiskBadge.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782300626657,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\layout.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782300828975,
+      "path": "app\\(admin)\\page.tsx",
+      "accessCount": 18,
+      "lastAccessed": 1782317996696,
       "type": "file"
     },
     {
       "path": "app\\components\\FilterBar.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782295106430,
+      "accessCount": 17,
+      "lastAccessed": 1782318791729,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\system\\page.tsx",
+      "accessCount": 16,
+      "lastAccessed": 1782317260656,
+      "type": "file"
+    },
+    {
+      "path": "",
+      "accessCount": 15,
+      "lastAccessed": 1782317552350,
+      "type": "directory"
+    },
+    {
+      "path": "app\\(admin)\\review\\history\\page.tsx",
+      "accessCount": 14,
+      "lastAccessed": 1782317895195,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\select.tsx",
+      "accessCount": 13,
+      "lastAccessed": 1782318611059,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\DataTable.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1782317791979,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\KpiCard.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1782318069586,
+      "type": "file"
+    },
+    {
+      "path": "app\\(auth)\\login\\page.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782317083342,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\users\\page.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782317221735,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\data\\rag\\page.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1782317273251,
       "type": "file"
     },
     {
       "path": "app\\globals.css",
+      "accessCount": 9,
+      "lastAccessed": 1782318012028,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\tabs.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1782317877498,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\StatusBadge.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1782316771505,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\sidebar.tsx",
+      "accessCount": 7,
+      "lastAccessed": 1782317374464,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\PageHeader.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1782316757709,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\Sidebar.tsx",
+      "accessCount": 6,
+      "lastAccessed": 1782317311861,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\layout.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782316756126,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\RiskBadge.tsx",
+      "accessCount": 5,
+      "lastAccessed": 1782316771755,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\TopBar.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782317080730,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\input.tsx",
+      "accessCount": 4,
+      "lastAccessed": 1782318045107,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\button.tsx",
       "accessCount": 3,
-      "lastAccessed": 1782300610592,
+      "lastAccessed": 1782317065573,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 3,
+      "lastAccessed": 1782318088156,
       "type": "file"
     },
     {
       "path": "app\\layout.tsx",
       "accessCount": 2,
       "lastAccessed": 1782294966959,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\dialog.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782317352946,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\sheet.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782317364271,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\toggle-group.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782317365576,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\table.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1782317563996,
       "type": "file"
     },
     {
@@ -261,27 +333,9 @@
       "type": "file"
     },
     {
-      "path": "package.json",
-      "accessCount": 1,
-      "lastAccessed": 1782294136656,
-      "type": "file"
-    },
-    {
       "path": "app\\page.tsx",
       "accessCount": 1,
       "lastAccessed": 1782294149291,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\Sidebar.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782294901516,
-      "type": "file"
-    },
-    {
-      "path": "app\\components\\TopBar.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1782294910062,
       "type": "file"
     },
     {
@@ -319,6 +373,42 @@
       "accessCount": 1,
       "lastAccessed": 1782315517284,
       "type": "file"
+    },
+    {
+      "path": "app\\api\\transcribe\\route.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782316428782,
+      "type": "file"
+    },
+    {
+      "path": "app\\api\\ocr\\route.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782316430552,
+      "type": "file"
+    },
+    {
+      "path": "lib\\utils.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782317154930,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\avatar.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782317186600,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui\\tooltip.tsx",
+      "accessCount": 1,
+      "lastAccessed": 1782317283447,
+      "type": "file"
+    },
+    {
+      "path": "app\\components\\ui",
+      "accessCount": 1,
+      "lastAccessed": 1782317344980,
+      "type": "directory"
     }
   ],
   "userDirectives": []

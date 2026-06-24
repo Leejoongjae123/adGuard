@@ -6,6 +6,7 @@ import FilterBar from "../../../components/FilterBar";
 import DataTable from "../../../components/DataTable";
 import type { Column } from "../../../components/DataTable";
 import StatusBadge from "../../../components/StatusBadge";
+import { Button } from "../../../components/ui/button";
 
 interface Keyword extends Record<string, unknown> {
   keyword: string;
@@ -45,11 +46,10 @@ const keywords: Keyword[] = [
 ];
 
 const columns: Column<Keyword>[] = [
-  { key: "keyword", header: "키워드/문구", width: "20%" },
+  { key: "keyword", header: "키워드/문구" },
   {
     key: "category",
     header: "카테고리",
-    width: "10%",
     render: (row) => {
       const color = categoryColors[row.category as string] || { bg: "bg-slate-50", text: "text-slate-700" };
       return (
@@ -62,7 +62,6 @@ const columns: Column<Keyword>[] = [
   {
     key: "risk",
     header: "위험도",
-    width: "8%",
     render: (row) => {
       const color = riskColors[row.risk as string] || "text-slate-600";
       return <span className={`text-xs font-semibold ${color}`}>{row.risk as string}</span>;
@@ -71,7 +70,6 @@ const columns: Column<Keyword>[] = [
   {
     key: "matchType",
     header: "매칭 방식",
-    width: "10%",
     render: (row) => (
       <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
         {row.matchType as string}
@@ -81,25 +79,23 @@ const columns: Column<Keyword>[] = [
   {
     key: "status",
     header: "상태",
-    width: "8%",
     render: (row) => <StatusBadge status={row.status as string} />,
   },
-  { key: "createdAt", header: "등록일", width: "10%" },
-  { key: "modifiedBy", header: "변경자", width: "8%" },
+  { key: "createdAt", header: "등록일" },
+  { key: "modifiedBy", header: "변경자" },
   {
     key: "actions",
     header: "액션",
-    width: "10%",
     render: () => (
       <div className="flex items-center gap-2">
-        <button className="inline-flex items-center gap-1 text-xs font-medium transition-colors hover:opacity-70" style={{ color: "var(--color-primary)" }} onClick={() => alert("키워드 수정 모달이 열립니다.")}>
+        <Button variant="ghost" size="xs" className="gap-1" style={{ color: "var(--color-primary)" }} onClick={() => alert("키워드 수정 모달이 열립니다.")}>
           <Edit2 className="h-3.5 w-3.5" />
           수정
-        </button>
-        <button className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-colors hover:opacity-70" onClick={() => alert("키워드가 삭제되었습니다.")}>
+        </Button>
+        <Button variant="ghost" size="xs" className="gap-1 text-slate-500" onClick={() => alert("키워드가 삭제되었습니다.")}>
           <Trash2 className="h-3.5 w-3.5" />
           삭제
-        </button>
+        </Button>
       </div>
     ),
   },
@@ -113,30 +109,33 @@ export default function KeywordsPage() {
         description="룰베이스 검수에 사용되는 금지 키워드를 관리합니다"
         actions={
           <>
-            <button
-              className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5"
               onClick={() => alert("엑셀 파일 업로드 기능은 준비 중입니다.")}
             >
               <Upload className="h-4 w-4" />
               엑셀 업로드
-            </button>
-            <button
-              className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5"
               onClick={() => alert("엑셀 파일을 다운로드합니다.")}
             >
               <Download className="h-4 w-4" />
               엑셀 다운로드
-            </button>
-            <button
-              className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+            </Button>
+            <Button
+              size="sm"
+              className="gap-1.5"
               style={{ background: "var(--color-primary)" }}
               onClick={() => alert("키워드 추가 모달이 열립니다.")}
             >
               <Plus className="h-4 w-4" />
               키워드 추가
-            </button>
+            </Button>
           </>
         }
       />

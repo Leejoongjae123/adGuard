@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { Badge } from "./ui/badge";
 
 const pathLabels: Record<string, string> = {
   "": "대시보드",
@@ -33,13 +34,15 @@ export default function TopBar() {
     crumbs.push({ label, href: "/" + accumulated });
   }
 
-  // If on root, show dashboard
   if (segments.length === 0) {
     crumbs.push({ label: "대시보드", href: "/" });
   }
 
   return (
-    <header className="flex h-12 items-center justify-between border-b px-6" style={{ borderColor: "var(--color-border)", background: "var(--color-card)" }}>
+    <header
+      className="flex h-12 items-center justify-between border-b px-6"
+      style={{ borderColor: "var(--color-border)", background: "var(--color-card)" }}
+    >
       <nav className="flex items-center gap-1.5 text-sm">
         {crumbs.map((crumb, i) => (
           <span key={crumb.href + i} className="flex items-center gap-1.5">
@@ -56,11 +59,13 @@ export default function TopBar() {
           </span>
         ))}
       </nav>
-      <div className="flex items-center gap-2">
-        <span className="rounded-md px-2.5 py-1 text-xs font-medium text-blue-700" style={{ background: "var(--color-primary-light)" }}>
-          관리자
-        </span>
-      </div>
+      <Badge
+        variant="secondary"
+        className="text-xs font-medium"
+        style={{ background: "var(--color-primary-light)", color: "#1D4ED8" }}
+      >
+        관리자
+      </Badge>
     </header>
   );
 }

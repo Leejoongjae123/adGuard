@@ -4,6 +4,7 @@ import PageHeader from "../../../components/PageHeader";
 import DataTable from "../../../components/DataTable";
 import type { Column } from "../../../components/DataTable";
 import StatusBadge from "../../../components/StatusBadge";
+import { Button } from "../../../components/ui/button";
 
 interface UserRow extends Record<string, unknown> {
   name: string;
@@ -75,10 +76,12 @@ const userColumns: Column<UserRow>[] = [
     width: "20%",
     render: () => (
       <div className="flex items-center gap-3">
-        <button className="text-xs font-medium" style={{ color: "var(--color-primary)" }} onClick={() => alert("사용자 정보 수정 모달이 열립니다.")}>
+        <Button variant="ghost" size="xs" style={{ color: "var(--color-primary)" }} onClick={() => alert("사용자 정보 수정 모달이 열립니다.")}>
           수정
-        </button>
-        <button className="text-xs font-medium text-slate-500" onClick={() => alert("사용자가 비활성화되었습니다.")}>비활성화</button>
+        </Button>
+        <Button variant="ghost" size="xs" className="text-slate-500" onClick={() => alert("사용자가 비활성화되었습니다.")}>
+          비활성화
+        </Button>
       </div>
     ),
   },
@@ -98,13 +101,12 @@ export default function UsersPage() {
         title="사용자 관리"
         description="시스템 사용자 및 권한을 관리합니다"
         actions={
-          <button
-            className="rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+          <Button
             style={{ background: "var(--color-primary)" }}
             onClick={() => alert("사용자 초대 모달이 열립니다.")}
           >
             + 사용자 초대
-          </button>
+          </Button>
         }
       />
 

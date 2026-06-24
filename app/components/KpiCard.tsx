@@ -1,6 +1,6 @@
-import { TrendingUp, TrendingDown } from "lucide-react";
 import clsx from "clsx";
 import type { LucideIcon } from "lucide-react";
+import { Card, CardContent } from "./ui/card";
 
 interface KpiCardProps {
   icon: LucideIcon;
@@ -24,74 +24,48 @@ export default function KpiCard({
   const isPositive = trend !== undefined && trend >= 0;
 
   return (
-    <div
+    <Card
       onClick={onClick}
       className={clsx(
-        "rounded-xl border p-5 transition-shadow",
-        onClick && "cursor-pointer hover:shadow-md"
+        "transition-shadow",
+        onClick && "cursor-pointer hover:shadow-sm"
       )}
-      style={{
-        background: "var(--color-card)",
-        borderColor: "var(--color-border)",
-      }}
+      style={{ borderColor: "var(--color-border)" }}
     >
-      <div className="flex items-start justify-between">
-        <div
-          className="flex h-10 w-10 items-center justify-center rounded-lg"
-          style={{ background: "var(--color-primary-50)" }}
-        >
-          <Icon className="h-5 w-5" style={{ color: "var(--color-primary)" }} />
+      <CardContent className="px-5 py-3">
+        {/* Top row: muted icon + trend text */}
+        <div className="flex items-center justify-between">
+          <Icon className="h-3.5 w-3.5" style={{ color: "var(--color-text-muted)" }} />
+          {trend !== undefined && (
+            <span
+              className="text-[11px] font-medium tabular-nums"
+              style={{ color: isPositive ? "var(--color-primary)" : "var(--color-text-muted)" }}
+            >
+              {isPositive ? "+" : ""}{trend}%
+            </span>
+          )}
         </div>
-        {trend !== undefined && (
-          <div
-            className={clsx(
-              "flex items-center gap-0.5 rounded-full px-2 py-0.5 text-xs font-medium",
-              isPositive
-                ? "text-blue-700"
-                : "text-slate-500"
-            )}
-            style={{ background: isPositive ? "var(--color-primary-50)" : "var(--color-secondary-50)" }}
-          >
-            {isPositive ? (
-              <TrendingUp className="h-3 w-3" />
-            ) : (
-              <TrendingDown className="h-3 w-3" />
-            )}
-            {isPositive ? "+" : ""}
-            {trend}%
-          </div>
-        )}
-      </div>
-      <div className="mt-3">
+
+        {/* Value */}
         <p
-          className="text-2xl font-bold tracking-tight"
+          className="mt-2 text-[22px] font-semibold leading-none tracking-tight"
           style={{ color: "var(--color-text)" }}
         >
           {value}
         </p>
-        <p
-          className="mt-0.5 text-sm"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
+
+        {/* Label */}
+        <p className="mt-1 text-[11px]" style={{ color: "var(--color-text-muted)" }}>
           {label}
         </p>
-        {sub && (
-          <p
-            className="mt-1 text-xs"
-            style={{ color: "var(--color-text-muted)" }}
-          >
-            {sub}
+
+        {/* Sub / trend label */}
+        {(sub || trendLabel) && (
+          <p className="mt-1 text-[11px]" style={{ color: "var(--color-text-muted)" }}>
+            {sub ?? trendLabel}
           </p>
         )}
-      </div>
-      {trendLabel && (
-        <p
-          className="mt-3 text-xs font-medium"
-          style={{ color: "var(--color-primary)" }}
-        >
-          {trendLabel} &rarr;
-        </p>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   );
 }

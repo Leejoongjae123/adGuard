@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Download, RefreshCw, MoreHorizontal } from "lucide-react";
 import PageHeader from "../../../components/PageHeader";
+import { Button } from "../../../components/ui/button";
 import FilterBar from "../../../components/FilterBar";
 import DataTable from "../../../components/DataTable";
 import type { Column } from "../../../components/DataTable";
@@ -36,7 +37,7 @@ const columns: Column<ReviewRecord>[] = [
   {
     key: "thumbnail",
     header: "썸네일",
-    width: "60px",
+    width: "64px",
     render: () => (
       <div className="h-9 w-12 rounded bg-slate-100" />
     ),
@@ -44,6 +45,7 @@ const columns: Column<ReviewRecord>[] = [
   {
     key: "name",
     header: "소재명",
+    width: "28%",
     render: (row) => (
       <div>
         <p className="text-sm font-medium" style={{ color: "var(--color-text)" }}>{row.name}</p>
@@ -54,7 +56,6 @@ const columns: Column<ReviewRecord>[] = [
   {
     key: "type",
     header: "유형",
-    width: "80px",
     render: (row) => (
       <span
         className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -68,29 +69,25 @@ const columns: Column<ReviewRecord>[] = [
   {
     key: "riskScore",
     header: "위험 점수",
-    width: "100px",
     render: (row) => <RiskBadge score={row.riskScore} size="sm" />,
   },
   {
     key: "status",
     header: "판정",
-    width: "90px",
     render: (row) => <StatusBadge status={row.status} size="sm" />,
   },
   {
     key: "reviewDate",
     header: "검수일",
-    width: "110px",
   },
   {
     key: "reviewer",
     header: "담당자",
-    width: "80px",
   },
   {
     key: "actions",
     header: "",
-    width: "40px",
+    width: "48px",
     render: () => (
       <button className="rounded p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600">
         <MoreHorizontal className="h-4 w-4" />
@@ -149,20 +146,14 @@ export default function ReviewHistoryPage() {
         description="과거 검수 건 목록을 조회하고 관리합니다"
         actions={
           <>
-            <button
-              className="flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
-            >
+            <Button variant="outline" size="sm" className="gap-1.5">
               <RefreshCw className="h-3.5 w-3.5" />
               재검수
-            </button>
-            <button
-              className="flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
-              style={{ background: "var(--color-primary)" }}
-            >
+            </Button>
+            <Button size="sm" className="gap-1.5" style={{ background: "var(--color-primary)" }}>
               <Download className="h-3.5 w-3.5" />
               CSV 내보내기
-            </button>
+            </Button>
           </>
         }
       />
