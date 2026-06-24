@@ -52,10 +52,10 @@ const guidelineColumns: Column<GuidelineDoc>[] = [
     width: "20%",
     render: () => (
       <div className="flex items-center gap-2">
-        <button className="text-xs font-medium" style={{ color: "var(--color-primary)" }}>
+        <button className="text-xs font-medium" style={{ color: "var(--color-primary)" }} onClick={() => alert("가이드라인 수정 모달이 열립니다.")}>
           수정
         </button>
-        <button className="text-xs font-medium text-slate-500">삭제</button>
+        <button className="text-xs font-medium text-slate-500" onClick={() => alert("가이드라인이 삭제되었습니다.")}>삭제</button>
       </div>
     ),
   },
@@ -129,18 +129,21 @@ export default function GuidelinesPage() {
             <button
               className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
               style={{ background: "var(--color-primary)" }}
+              onClick={() => alert("프롬프트가 저장되었습니다.")}
             >
               저장
             </button>
             <button
               className="rounded-lg border px-5 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
               style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+              onClick={() => alert("이전 버전 목록을 불러옵니다.")}
             >
               이전 버전
             </button>
             <button
               className="rounded-lg border px-5 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
               style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+              onClick={() => alert("이전 버전으로 롤백되었습니다.")}
             >
               롤백
             </button>
@@ -174,6 +177,7 @@ export default function GuidelinesPage() {
           <button
             className="mt-3 w-full rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ background: "var(--color-primary)" }}
+            onClick={() => alert("테스트가 실행되었습니다. 결과를 확인하세요.")}
           >
             테스트 실행
           </button>

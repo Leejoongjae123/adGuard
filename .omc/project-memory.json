@@ -112,26 +112,62 @@
   "hotPaths": [
     {
       "path": "app\\(admin)\\review\\[id]\\page.tsx",
-      "accessCount": 14,
-      "lastAccessed": 1782300709600,
+      "accessCount": 21,
+      "lastAccessed": 1782301080281,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\guidelines\\page.tsx",
+      "accessCount": 15,
+      "lastAccessed": 1782301089845,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\page.tsx",
+      "accessCount": 12,
+      "lastAccessed": 1782301073261,
       "type": "file"
     },
     {
       "path": "",
-      "accessCount": 10,
-      "lastAccessed": 1782295118454,
+      "accessCount": 11,
+      "lastAccessed": 1782301014352,
       "type": "directory"
     },
     {
-      "path": "app\\(admin)\\settings\\guidelines\\page.tsx",
+      "path": "app\\(admin)\\review\\new\\page.tsx",
+      "accessCount": 11,
+      "lastAccessed": 1782301064657,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\system\\page.tsx",
       "accessCount": 10,
-      "lastAccessed": 1782300716476,
+      "lastAccessed": 1782301125424,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\data\\keywords\\page.tsx",
+      "accessCount": 9,
+      "lastAccessed": 1782301060221,
       "type": "file"
     },
     {
       "path": "app\\(admin)\\review\\history\\page.tsx",
-      "accessCount": 7,
-      "lastAccessed": 1782300910168,
+      "accessCount": 8,
+      "lastAccessed": 1782300961161,
+      "type": "file"
+    },
+    {
+      "path": "app\\(auth)\\login\\page.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1782301031847,
+      "type": "file"
+    },
+    {
+      "path": "app\\(admin)\\settings\\users\\page.tsx",
+      "accessCount": 8,
+      "lastAccessed": 1782301102813,
       "type": "file"
     },
     {
@@ -141,9 +177,9 @@
       "type": "file"
     },
     {
-      "path": "app\\(admin)\\page.tsx",
+      "path": "app\\(admin)\\data\\rag\\page.tsx",
       "accessCount": 6,
-      "lastAccessed": 1782300959097,
+      "lastAccessed": 1782301068602,
       "type": "file"
     },
     {
@@ -165,39 +201,9 @@
       "type": "file"
     },
     {
-      "path": "app\\(admin)\\review\\new\\page.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782300679468,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\data\\keywords\\page.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782300695646,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\settings\\system\\page.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782300734024,
-      "type": "file"
-    },
-    {
-      "path": "app\\(auth)\\login\\page.tsx",
-      "accessCount": 5,
-      "lastAccessed": 1782300959622,
-      "type": "file"
-    },
-    {
       "path": "app\\components\\RiskBadge.tsx",
       "accessCount": 4,
       "lastAccessed": 1782300626657,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\settings\\users\\page.tsx",
-      "accessCount": 4,
-      "lastAccessed": 1782300725325,
       "type": "file"
     },
     {
@@ -216,12 +222,6 @@
       "path": "app\\globals.css",
       "accessCount": 3,
       "lastAccessed": 1782300610592,
-      "type": "file"
-    },
-    {
-      "path": "app\\(admin)\\data\\rag\\page.tsx",
-      "accessCount": 3,
-      "lastAccessed": 1782300701813,
       "type": "file"
     },
     {
@@ -312,6 +312,12 @@
       "path": "app\\(admin)\\sitemap\\page.tsx",
       "accessCount": 1,
       "lastAccessed": 1782300815414,
+      "type": "file"
+    },
+    {
+      "path": "API_SPEC.md",
+      "accessCount": 1,
+      "lastAccessed": 1782315517284,
       "type": "file"
     }
   ],

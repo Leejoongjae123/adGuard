@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Play, Eye, EyeOff, Copy, Check, ChevronLeft, Clock, User } from "lucide-react";
 import RiskBadge from "../../../components/RiskBadge";
 
@@ -109,10 +110,12 @@ function highlightKeyword(text: string, keyword: string) {
 }
 
 export default function ReviewDetailPage() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<TabKey>("violations");
   const [overlayOn, setOverlayOn] = useState(false);
   const [comment, setComment] = useState("");
   const [copiedIdx, setCopiedIdx] = useState<string | null>(null);
+  const [verdict, setVerdict] = useState<string | null>(null);
 
   const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -134,6 +137,7 @@ export default function ReviewDetailPage() {
         <button
           className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm transition-colors hover:bg-slate-100"
           style={{ color: "var(--color-text-secondary)" }}
+          onClick={() => router.push("/review/history")}
         >
           <ChevronLeft className="h-4 w-4" />
           목록으로
@@ -380,6 +384,7 @@ export default function ReviewDetailPage() {
                               <button
                                 className="rounded px-2 py-1 text-xs font-medium text-white transition-colors hover:opacity-90"
                                 style={{ background: "var(--color-primary)" }}
+                                onClick={() => alert("대체 문구가 적용되었습니다.")}
                               >
                                 적용
                               </button>
@@ -472,16 +477,32 @@ export default function ReviewDetailPage() {
           style={{ borderColor: "var(--color-border)", background: "var(--color-bg)" }}
         />
         <div className="flex items-center gap-2">
-          <button className="h-10 rounded-lg bg-blue-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-700">
+          <button
+            className={`h-10 rounded-lg bg-blue-600 px-6 text-sm font-semibold text-white transition-colors hover:bg-blue-700 ${verdict === "통과" ? "ring-2 ring-blue-400 ring-offset-2" : ""}`}
+            onClick={() => {
+              setVerdict("통과");
+              alert("통과(으)로 판정되었습니다.");
+            }}
+          >
             통과
           </button>
           <button
-            className="h-10 rounded-lg border px-6 text-sm font-semibold transition-colors hover:bg-slate-50"
+            className={`h-10 rounded-lg border px-6 text-sm font-semibold transition-colors hover:bg-slate-50 ${verdict === "보류" ? "ring-2 ring-slate-400 ring-offset-2" : ""}`}
             style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+            onClick={() => {
+              setVerdict("보류");
+              alert("보류(으)로 판정되었습니다.");
+            }}
           >
             보류
           </button>
-          <button className="h-10 rounded-lg bg-slate-700 px-6 text-sm font-semibold text-white transition-colors hover:bg-slate-800">
+          <button
+            className={`h-10 rounded-lg bg-slate-700 px-6 text-sm font-semibold text-white transition-colors hover:bg-slate-800 ${verdict === "반려" ? "ring-2 ring-slate-400 ring-offset-2" : ""}`}
+            onClick={() => {
+              setVerdict("반려");
+              alert("반려(으)로 판정되었습니다.");
+            }}
+          >
             반려
           </button>
         </div>

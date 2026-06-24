@@ -84,6 +84,7 @@ export default function SystemPage() {
               <button
                 className="w-full rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-slate-50"
                 style={{ borderColor: "var(--color-border)", color: "var(--color-text-secondary)" }}
+                onClick={() => alert(`${service.name} 연결 테스트 성공`)}
               >
                 연결 테스트
               </button>
@@ -260,6 +261,7 @@ export default function SystemPage() {
           <button
             className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ background: "var(--color-primary)" }}
+            onClick={() => alert("설정이 저장되었습니다.")}
           >
             저장
           </button>
@@ -322,6 +324,7 @@ export default function SystemPage() {
           <button
             className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ background: "var(--color-primary)" }}
+            onClick={() => alert("설정이 저장되었습니다.")}
           >
             저장
           </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Upload, FileVideo, FileImage, Info, Loader2 } from "lucide-react";
 import PageHeader from "../../../components/PageHeader";
 
@@ -23,6 +23,8 @@ export default function ReviewNewPage() {
   const [media, setMedia] = useState("");
   const [adFormat, setAdFormat] = useState("");
   const [memo, setMemo] = useState("");
+  const [isDragOver, setIsDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="space-y-6">
@@ -32,9 +34,34 @@ export default function ReviewNewPage() {
       />
 
       {/* Upload Drop Zone */}
+      <input
+        type="file"
+        ref={fileInputRef}
+        multiple
+        accept=".mp4,.mov,.jpg,.png"
+        className="hidden"
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            alert(`${e.target.files.length}개 파일이 선택되었습니다.`);
+          }
+        }}
+      />
       <div
-        className="flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed p-12 transition-colors hover:border-blue-400"
-        style={{ borderColor: "var(--color-border)", background: "var(--color-card)" }}
+        className={`flex cursor-pointer flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed p-12 transition-colors hover:border-blue-400 ${isDragOver ? "border-blue-400 bg-blue-50/50" : ""}`}
+        style={{ borderColor: isDragOver ? undefined : "var(--color-border)", background: isDragOver ? undefined : "var(--color-card)" }}
+        onClick={() => fileInputRef.current?.click()}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setIsDragOver(true);
+        }}
+        onDragLeave={() => setIsDragOver(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setIsDragOver(false);
+          if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            alert(`${e.dataTransfer.files.length}개 파일이 드롭되었습니다.`);
+          }
+        }}
       >
         <div
           className="flex h-16 w-16 items-center justify-center rounded-full"
@@ -53,6 +80,10 @@ export default function ReviewNewPage() {
         <button
           className="rounded-lg px-5 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
           style={{ background: "var(--color-primary)" }}
+          onClick={(e) => {
+            e.stopPropagation();
+            fileInputRef.current?.click();
+          }}
         >
           파일 선택
         </button>
@@ -216,6 +247,7 @@ export default function ReviewNewPage() {
         <button
           className="rounded-xl px-8 py-3 text-sm font-semibold text-white transition-colors hover:opacity-90"
           style={{ background: "var(--color-primary)" }}
+          onClick={() => alert("검수가 시작되었습니다. 분석이 완료되면 알림을 보내드립니다.")}
         >
           검수 시작
         </button>

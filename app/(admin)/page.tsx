@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FileText, ShieldCheck, AlertTriangle, Clock, Plus } from "lucide-react";
 import PageHeader from "../components/PageHeader";
@@ -51,6 +52,7 @@ function buildConicGradient() {
 
 /* ── Table data ───────────────────────────────────────── */
 interface ReviewRow {
+  id: string;
   name: string;
   type: string;
   riskScore: number;
@@ -61,12 +63,12 @@ interface ReviewRow {
 }
 
 const recentReviews: ReviewRow[] = [
-  { name: "신제품 출시 프로모션 A", type: "배너", riskScore: 78, status: "반려", date: "2026-06-23", reviewer: "김민수" },
-  { name: "여름 할인 캠페인", type: "영상", riskScore: 25, status: "승인", date: "2026-06-23", reviewer: "이지은" },
-  { name: "건강식품 광고 B", type: "배너", riskScore: 85, status: "반려", date: "2026-06-22", reviewer: "박서연" },
-  { name: "뷰티 브랜드 리타겟팅", type: "영상", riskScore: 32, status: "승인", date: "2026-06-22", reviewer: "최현우" },
-  { name: "금융상품 안내 C", type: "배너", riskScore: 65, status: "심사중", date: "2026-06-21", reviewer: "정다은" },
-  { name: "모바일 게임 사전예약", type: "영상", riskScore: 18, status: "승인", date: "2026-06-21", reviewer: "한지호" },
+  { id: "RV-2024-0001", name: "신제품 출시 프로모션 A", type: "배너", riskScore: 78, status: "반려", date: "2026-06-23", reviewer: "김민수" },
+  { id: "RV-2024-0002", name: "여름 할인 캠페인", type: "영상", riskScore: 25, status: "승인", date: "2026-06-23", reviewer: "이지은" },
+  { id: "RV-2024-0003", name: "건강식품 광고 B", type: "배너", riskScore: 85, status: "반려", date: "2026-06-22", reviewer: "박서연" },
+  { id: "RV-2024-0004", name: "뷰티 브랜드 리타겟팅", type: "영상", riskScore: 32, status: "승인", date: "2026-06-22", reviewer: "최현우" },
+  { id: "RV-2024-0005", name: "금융상품 안내 C", type: "배너", riskScore: 65, status: "심사중", date: "2026-06-21", reviewer: "정다은" },
+  { id: "RV-2024-0006", name: "모바일 게임 사전예약", type: "영상", riskScore: 18, status: "승인", date: "2026-06-21", reviewer: "한지호" },
 ];
 
 const columns: Column<ReviewRow>[] = [
@@ -90,6 +92,7 @@ const columns: Column<ReviewRow>[] = [
 
 /* ── Page ──────────────────────────────────────────────── */
 export default function DashboardPage() {
+  const router = useRouter();
   const today = new Date();
   const dateStr = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
@@ -218,7 +221,7 @@ export default function DashboardPage() {
         >
           최근 검수 내역
         </h2>
-        <DataTable columns={columns} data={recentReviews} totalCount={248} />
+        <DataTable columns={columns} data={recentReviews} totalCount={248} onRowClick={(row) => router.push(`/review/${row.id}`)} />
       </div>
     </div>
   );

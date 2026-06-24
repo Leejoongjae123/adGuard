@@ -75,10 +75,10 @@ const userColumns: Column<UserRow>[] = [
     width: "20%",
     render: () => (
       <div className="flex items-center gap-3">
-        <button className="text-xs font-medium" style={{ color: "var(--color-primary)" }}>
+        <button className="text-xs font-medium" style={{ color: "var(--color-primary)" }} onClick={() => alert("사용자 정보 수정 모달이 열립니다.")}>
           수정
         </button>
-        <button className="text-xs font-medium text-slate-500">비활성화</button>
+        <button className="text-xs font-medium text-slate-500" onClick={() => alert("사용자가 비활성화되었습니다.")}>비활성화</button>
       </div>
     ),
   },
@@ -101,6 +101,7 @@ export default function UsersPage() {
           <button
             className="rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
             style={{ background: "var(--color-primary)" }}
+            onClick={() => alert("사용자 초대 모달이 열립니다.")}
           >
             + 사용자 초대
           </button>

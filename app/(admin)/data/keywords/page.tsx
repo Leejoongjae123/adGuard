@@ -92,11 +92,11 @@ const columns: Column<Keyword>[] = [
     width: "10%",
     render: () => (
       <div className="flex items-center gap-2">
-        <button className="inline-flex items-center gap-1 text-xs font-medium transition-colors hover:opacity-70" style={{ color: "var(--color-primary)" }}>
+        <button className="inline-flex items-center gap-1 text-xs font-medium transition-colors hover:opacity-70" style={{ color: "var(--color-primary)" }} onClick={() => alert("키워드 수정 모달이 열립니다.")}>
           <Edit2 className="h-3.5 w-3.5" />
           수정
         </button>
-        <button className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-colors hover:opacity-70">
+        <button className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-colors hover:opacity-70" onClick={() => alert("키워드가 삭제되었습니다.")}>
           <Trash2 className="h-3.5 w-3.5" />
           삭제
         </button>
@@ -116,6 +116,7 @@ export default function KeywordsPage() {
             <button
               className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
               style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+              onClick={() => alert("엑셀 파일 업로드 기능은 준비 중입니다.")}
             >
               <Upload className="h-4 w-4" />
               엑셀 업로드
@@ -123,6 +124,7 @@ export default function KeywordsPage() {
             <button
               className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
               style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+              onClick={() => alert("엑셀 파일을 다운로드합니다.")}
             >
               <Download className="h-4 w-4" />
               엑셀 다운로드
@@ -130,6 +132,7 @@ export default function KeywordsPage() {
             <button
               className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
               style={{ background: "var(--color-primary)" }}
+              onClick={() => alert("키워드 추가 모달이 열립니다.")}
             >
               <Plus className="h-4 w-4" />
               키워드 추가

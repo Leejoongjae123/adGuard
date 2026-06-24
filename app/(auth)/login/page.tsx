@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Shield, Mail, Lock, LogIn } from "lucide-react";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [employeeId, setEmployeeId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +24,7 @@ export default function LoginPage() {
     // TODO: integrate real auth
     setTimeout(() => {
       setLoading(false);
-      setError("인증에 실패했습니다. 사번/이메일 또는 비밀번호를 확인해주세요.");
+      router.push("/");
     }, 1200);
   };
 

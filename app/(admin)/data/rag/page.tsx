@@ -61,6 +61,7 @@ export default function RagPage() {
             <button
               className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
               style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+              onClick={() => alert("엑셀 파일 업로드 기능은 준비 중입니다.")}
             >
               <Upload className="h-4 w-4" />
               엑셀 업로드
@@ -68,6 +69,7 @@ export default function RagPage() {
             <button
               className="inline-flex items-center gap-1.5 rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-50"
               style={{ borderColor: "var(--color-border)", color: "var(--color-text)" }}
+              onClick={() => alert("재인덱싱이 시작되었습니다.")}
             >
               <RefreshCw className="h-4 w-4" />
               재인덱싱
