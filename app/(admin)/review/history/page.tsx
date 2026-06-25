@@ -59,7 +59,7 @@ const columns: Column<ReviewRecord>[] = [
     render: (row) => (
       <span
         className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
-          row.type === "영상" ? "bg-blue-50 text-blue-700" : "bg-blue-100 text-blue-700"
+          row.type === "영상" ? "bg-slate-100 text-slate-500" : "bg-slate-100 text-slate-500"
         }`}
       >
         {row.type}

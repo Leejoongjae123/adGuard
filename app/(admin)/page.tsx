@@ -34,10 +34,10 @@ const maxRisk = Math.max(...monthlyRisk.map((d) => d.value));
 
 /* ── Donut chart data ─────────────────────────────────── */
 const violations = [
-  { label: "오도성", pct: 38, color: "#1E40AF" },
-  { label: "과장표현", pct: 28, color: "#2563EB" },
-  { label: "금지어", pct: 22, color: "#60A5FA" },
-  { label: "UI겹침", pct: 12, color: "#BFDBFE" },
+  { label: "오도성", pct: 38, color: "#2563EB" },   // primary — 최다 유형 강조
+  { label: "과장표현", pct: 28, color: "#94A3B8" },
+  { label: "금지어", pct: 22, color: "#CBD5E1" },
+  { label: "UI겹침", pct: 12, color: "#E2E8F0" },
 ];
 
 function buildConicGradient() {
@@ -138,12 +138,7 @@ export default function DashboardPage() {
                   className="w-full rounded-t-md transition-all"
                   style={{
                     height: `${(d.value / maxRisk) * 140}px`,
-                    background:
-                      d.value >= 60
-                        ? "#1E3A8A"
-                        : d.value >= 40
-                          ? "#2563EB"
-                          : "#93C5FD",
+                    background: d.value >= 60 ? "#2563EB" : "#CBD5E1",
                   }}
                 />
                 <span className="text-[10px]" style={{ color: "var(--color-text-muted)" }}>
@@ -162,7 +157,7 @@ export default function DashboardPage() {
           <h2 className="mb-4 text-sm font-semibold" style={{ color: "var(--color-text)" }}>
             위반 유형 분포
           </h2>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center gap-10">
             {/* Donut */}
             <div className="relative flex-shrink-0">
               <div

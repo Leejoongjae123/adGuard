@@ -240,8 +240,8 @@ export default function ReviewNewPage() {
 
   /* ── Status UI ──────────────────────────────────────── */
   const StatusIndicator = ({ status }: { status: AnalysisStatus }) => {
-    if (status === "processing") return <Loader2 className="h-4 w-4 animate-spin text-blue-500" />;
-    if (status === "done") return <CheckCircle className="h-4 w-4 text-blue-600" />;
+    if (status === "processing") return <Loader2 className="h-4 w-4 animate-spin text-slate-500" />;
+    if (status === "done") return <CheckCircle className="h-4 w-4 text-slate-500" />;
     if (status === "error") return <AlertCircle className="h-4 w-4 text-slate-500" />;
     return null;
   };
@@ -292,7 +292,7 @@ export default function ReviewNewPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 min-w-0">
-                    <FileVideo className="h-4 w-4 shrink-0 text-blue-500" />
+                    <FileVideo className="h-4 w-4 shrink-0 text-slate-500" />
                     <span className="truncate text-sm" style={{ color: "var(--color-text)" }}>{videoFile.name}</span>
                     <span className="shrink-0 text-xs" style={{ color: "var(--color-text-muted)" }}>({(videoFile.size / 1024 / 1024).toFixed(1)} MB)</span>
                   </div>
@@ -310,7 +310,7 @@ export default function ReviewNewPage() {
                 {videoError && <div className="rounded-lg bg-slate-50 px-4 py-2.5 text-sm" style={{ color: "var(--color-text-secondary)" }}>{videoError}</div>}
                 {videoStatus === "processing" && (
                   <div className="flex flex-col items-center gap-3 rounded-lg py-8" style={{ background: "var(--color-bg)" }}>
-                    <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+                    <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
                     <p className="text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>Whisper AI가 음성을 분석하고 있습니다...</p>
                     <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>영상 길이에 따라 1~3분 소요</p>
                   </div>
@@ -380,7 +380,7 @@ export default function ReviewNewPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 min-w-0">
-                    <ImageIcon className="h-4 w-4 shrink-0 text-blue-500" />
+                    <ImageIcon className="h-4 w-4 shrink-0 text-slate-500" />
                     <span className="truncate text-sm" style={{ color: "var(--color-text)" }}>{imageFile.name}</span>
                     <span className="shrink-0 text-xs" style={{ color: "var(--color-text-muted)" }}>({(imageFile.size / 1024 / 1024).toFixed(1)} MB)</span>
                   </div>
@@ -398,7 +398,7 @@ export default function ReviewNewPage() {
                 {imageError && <div className="rounded-lg bg-slate-50 px-4 py-2.5 text-sm" style={{ color: "var(--color-text-secondary)" }}>{imageError}</div>}
                 {imageStatus === "processing" && (
                   <div className="flex flex-col items-center gap-3 rounded-lg py-8" style={{ background: "var(--color-bg)" }}>
-                    <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+                    <Loader2 className="h-8 w-8 animate-spin text-slate-500" />
                     <p className="text-sm font-medium" style={{ color: "var(--color-text-secondary)" }}>OCR AI가 이미지 텍스트를 추출하고 있습니다...</p>
                   </div>
                 )}
@@ -491,7 +491,7 @@ export default function ReviewNewPage() {
               <tr key={i} className="border-t" style={{ borderColor: "var(--color-border)" }}>
                 <td className="px-5 py-3" style={{ color: "var(--color-text)" }}>
                   <div className="flex items-center gap-2">
-                    {file.name.match(/\.(mp4|mov)$/i) ? <FileVideo className="h-4 w-4 text-blue-500" /> : <FileImage className="h-4 w-4 text-blue-500" />}
+                    {file.name.match(/\.(mp4|mov)$/i) ? <FileVideo className="h-4 w-4 text-slate-400" /> : <FileImage className="h-4 w-4 text-slate-400" />}
                     {file.name}
                   </div>
                 </td>
@@ -505,7 +505,7 @@ export default function ReviewNewPage() {
                   </div>
                 </td>
                 <td className="px-5 py-3">
-                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${file.status === "완료" ? "bg-blue-50 text-blue-700" : file.status === "업로드중" ? "bg-blue-100 text-blue-600" : file.status === "오류" ? "bg-slate-100 text-slate-700" : "bg-slate-50 text-slate-600"}`}>
+                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium ${file.status === "오류" ? "bg-slate-100 text-slate-700" : "bg-slate-100 text-slate-600"}`}>
                     {file.status === "업로드중" && <Loader2 className="h-3 w-3 animate-spin" />}
                     {file.status}
                   </span>

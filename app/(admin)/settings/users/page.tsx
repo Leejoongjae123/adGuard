@@ -43,10 +43,10 @@ const roleBadge = (role: string) => {
   const isAdmin = role === "관리자";
   return (
     <span
-      className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium${isAdmin ? " font-semibold" : ""}`}
       style={{
-        background: isAdmin ? "#DBEAFE" : "#F1F5F9",
-        color: isAdmin ? "#1D4ED8" : "#334155",
+        background: "#F1F5F9",
+        color: "#334155",
       }}
     >
       {role}
@@ -76,7 +76,7 @@ const userColumns: Column<UserRow>[] = [
     width: "20%",
     render: () => (
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="xs" style={{ color: "var(--color-primary)" }} onClick={() => alert("사용자 정보 수정 모달이 열립니다.")}>
+        <Button variant="ghost" size="xs" style={{ color: "var(--color-text-secondary)" }} onClick={() => alert("사용자 정보 수정 모달이 열립니다.")}>
           수정
         </Button>
         <Button variant="ghost" size="xs" className="text-slate-500" onClick={() => alert("사용자가 비활성화되었습니다.")}>

@@ -14,10 +14,10 @@ interface RiskBadgeProps {
  */
 function getRiskLevel(score: number) {
   if (score <= 30)
-    return { label: "안전", text: "text-blue-500", bg: "bg-blue-50", bar: "bg-blue-400" };
+    return { label: "안전", text: "text-slate-500", bg: "bg-slate-100", bar: "bg-slate-400" };
   if (score <= 70)
-    return { label: "주의", text: "text-blue-700", bg: "bg-blue-100", bar: "bg-blue-600" };
-  return { label: "위험", text: "text-blue-900", bar: "bg-blue-900", bg: "bg-blue-100" };
+    return { label: "주의", text: "text-amber-600", bg: "bg-amber-50", bar: "bg-amber-400" };
+  return { label: "위험", text: "text-red-600", bg: "bg-red-50", bar: "bg-red-500" };
 }
 
 export default function RiskBadge({ score, size = "sm", showLabel = true }: RiskBadgeProps) {
@@ -27,7 +27,7 @@ export default function RiskBadge({ score, size = "sm", showLabel = true }: Risk
     return (
       <div className={clsx("flex flex-col items-center gap-2 rounded-xl p-5", risk.bg)}>
         <span className={clsx("text-3xl font-bold", risk.text)}>{score}%</span>
-        <div className="h-2 w-full max-w-[120px] rounded-full bg-blue-200">
+        <div className="h-2 w-full max-w-[120px] rounded-full bg-slate-200">
           <div
             className={clsx("h-full rounded-full transition-all", risk.bar)}
             style={{ width: `${score}%` }}

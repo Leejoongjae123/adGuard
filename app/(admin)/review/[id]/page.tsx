@@ -106,7 +106,7 @@ function highlightKeyword(text: string, keyword: string) {
   return (
     <>
       {text.slice(0, idx)}
-      <span className="rounded bg-blue-100 px-0.5 text-blue-800">{keyword}</span>
+      <span className="rounded bg-slate-100 px-0.5 text-slate-700">{keyword}</span>
       {text.slice(idx + keyword.length)}
     </>
   );
@@ -151,7 +151,7 @@ export default function ReviewDetailPage() {
         <h1 className="text-lg font-bold" style={{ color: "var(--color-text)" }}>
           Summer_Campaign_15s_v3.mp4
         </h1>
-        <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">
+        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
           검수중
         </span>
       </div>
@@ -308,9 +308,7 @@ export default function ReviewDetailPage() {
                         </div>
                         <div className="flex-1">
                           <span
-                            className={`inline-block rounded px-1.5 py-0.5 text-[10px] font-medium ${
-                              item.type === "자막" ? "bg-blue-50 text-blue-700" : "bg-blue-100 text-blue-700"
-                            }`}
+                            className="inline-block rounded px-1.5 py-0.5 text-[10px] font-medium bg-slate-100 text-slate-600"
                           >
                             {item.type}
                           </span>
@@ -377,9 +375,9 @@ export default function ReviewDetailPage() {
                           {alt.suggestions.map((sug, si) => (
                             <div
                               key={si}
-                              className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-2"
+                              className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2"
                             >
-                              <span className="text-sm text-blue-700 font-medium">{sug}</span>
+                              <span className="text-sm text-slate-700 font-medium">{sug}</span>
                               <div className="flex items-center gap-1">
                                 <Button
                                   size="xs"
@@ -394,7 +392,7 @@ export default function ReviewDetailPage() {
                                   onClick={() => handleCopy(sug, `${alt.violationId}-${si}`)}
                                 >
                                   {copiedIdx === `${alt.violationId}-${si}` ? (
-                                    <Check className="h-3 w-3 text-blue-500" />
+                                    <Check className="h-3 w-3 text-slate-500" />
                                   ) : (
                                     <Copy className="h-3 w-3" />
                                   )}
@@ -428,9 +426,7 @@ export default function ReviewDetailPage() {
                             </td>
                             <td className="px-3 py-2 text-center">
                               <span
-                                className={`text-sm font-bold ${
-                                  sc.similarity >= 90 ? "text-blue-800" : sc.similarity >= 75 ? "text-blue-600" : "text-slate-600"
-                                }`}
+                                className="text-sm font-semibold text-slate-700"
                               >
                                 {sc.similarity}%
                               </span>
@@ -439,10 +435,10 @@ export default function ReviewDetailPage() {
                               <span
                                 className={`inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${
                                   sc.result === "반려"
-                                    ? "bg-slate-700 text-white"
+                                    ? "bg-red-50 text-red-600"
                                     : sc.result === "보류"
-                                    ? "bg-slate-200 text-slate-700"
-                                    : "bg-blue-50 text-blue-700"
+                                    ? "bg-slate-100 text-slate-600"
+                                    : "bg-slate-100 text-slate-500"
                                 }`}
                               >
                                 {sc.result}

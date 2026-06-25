@@ -19,17 +19,17 @@ interface Keyword extends Record<string, unknown> {
 }
 
 const categoryColors: Record<string, { bg: string; text: string }> = {
-  의료: { bg: "bg-blue-50", text: "text-blue-700" },
-  금융: { bg: "bg-blue-100", text: "text-blue-800" },
-  과장: { bg: "bg-slate-100", text: "text-slate-700" },
-  성인: { bg: "bg-blue-200", text: "text-blue-900" },
-  도박: { bg: "bg-slate-200", text: "text-slate-800" },
+  의료: { bg: "bg-slate-100", text: "text-slate-600" },
+  금융: { bg: "bg-slate-100", text: "text-slate-600" },
+  과장: { bg: "bg-slate-100", text: "text-slate-600" },
+  성인: { bg: "bg-slate-100", text: "text-slate-600" },
+  도박: { bg: "bg-slate-100", text: "text-slate-600" },
 };
 
 const riskColors: Record<string, string> = {
-  높음: "text-blue-900",
-  보통: "text-blue-600",
-  낮음: "text-blue-400",
+  높음: "text-red-600 font-semibold",
+  보통: "text-slate-600",
+  낮음: "text-slate-400",
 };
 
 const keywords: Keyword[] = [
@@ -88,7 +88,7 @@ const columns: Column<Keyword>[] = [
     header: "액션",
     render: () => (
       <div className="flex items-center gap-2">
-        <Button variant="ghost" size="xs" className="gap-1" style={{ color: "var(--color-primary)" }} onClick={() => alert("키워드 수정 모달이 열립니다.")}>
+        <Button variant="ghost" size="xs" className="gap-1" style={{ color: "var(--color-text-secondary)" }} onClick={() => alert("키워드 수정 모달이 열립니다.")}>
           <Edit2 className="h-3.5 w-3.5" />
           수정
         </Button>

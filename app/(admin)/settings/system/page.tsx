@@ -76,8 +76,8 @@ export default function SystemPage() {
                     {service.name}
                   </p>
                   <div className="flex items-center gap-1.5">
-                    <span className="inline-block h-2 w-2 rounded-full bg-blue-500" />
-                    <span className="text-xs text-blue-600">{service.status}</span>
+                    <span className="inline-block h-2 w-2 rounded-full bg-slate-400" />
+                    <span className="text-xs text-slate-600">{service.status}</span>
                   </div>
                 </div>
               </div>

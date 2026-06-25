@@ -57,7 +57,7 @@ const guidelineColumns: Column<GuidelineDoc>[] = [
     width: "20%",
     render: () => (
       <div className="flex items-center gap-2">
-        <button className="text-xs font-medium" style={{ color: "var(--color-primary)" }} onClick={() => alert("가이드라인 수정 모달이 열립니다.")}>
+        <button className="text-xs font-medium" style={{ color: "var(--color-text-secondary)" }} onClick={() => alert("가이드라인 수정 모달이 열립니다.")}>
           수정
         </button>
         <button className="text-xs font-medium text-slate-500" onClick={() => alert("가이드라인이 삭제되었습니다.")}>삭제</button>
@@ -177,32 +177,32 @@ export default function GuidelinesPage() {
                   <span className="text-sm" style={{ color: "var(--color-text-secondary)" }}>
                     종합 위험도 점수
                   </span>
-                  <span className="text-lg font-bold text-blue-600">42점</span>
+                  <span className="text-lg font-bold text-slate-600">42점</span>
                 </div>
                 <div
                   className="h-2 w-full overflow-hidden rounded-full"
                   style={{ background: "var(--color-border)" }}
                 >
-                  <div className="h-full rounded-full bg-blue-500" style={{ width: "42%" }} />
+                  <div className="h-full rounded-full bg-slate-400" style={{ width: "42%" }} />
                 </div>
                 <div className="space-y-2 pt-2">
                   <p className="text-xs font-medium" style={{ color: "var(--color-text)" }}>
                     위반 항목
                   </p>
                   <div className="flex items-center gap-2">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-500" />
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-slate-400" />
                     <span className="text-xs" style={{ color: "var(--color-text-secondary)" }}>
                       과장 광고 표현 의심 (42점)
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-400" />
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-slate-300" />
                     <span className="text-xs" style={{ color: "var(--color-text-secondary)" }}>
                       커뮤니티 가이드 준수 (12점)
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-400" />
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-slate-300" />
                     <span className="text-xs" style={{ color: "var(--color-text-secondary)" }}>
                       저작권 침해 없음 (5점)
                     </span>
@@ -262,7 +262,7 @@ export default function GuidelinesPage() {
               <div>
                 <div className="mb-2 flex items-center justify-between">
                   <Label style={{ color: "var(--color-text-secondary)" }}>위험 경계</Label>
-                  <span className="text-sm font-semibold text-blue-800">{dangerThreshold}%</span>
+                  <span className="text-sm font-semibold text-slate-700">{dangerThreshold}%</span>
                 </div>
                 <input
                   type="range"

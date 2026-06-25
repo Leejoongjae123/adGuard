@@ -99,7 +99,7 @@ export default function RagPage() {
           <h3 className="text-sm font-semibold" style={{ color: "var(--color-text)" }}>
             임베딩 처리 현황
           </h3>
-          <span className="text-xs font-medium text-blue-600">100% 완료</span>
+          <span className="text-xs font-medium text-slate-600">100% 완료</span>
         </div>
         <Progress value={100} className="h-2.5 mt-3" />
         <p className="mt-2 text-xs" style={{ color: "var(--color-text-secondary)" }}>

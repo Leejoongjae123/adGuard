@@ -2,3 +2,7 @@
 {"t":0,"agent":"system","event":"skill_invoked","skill_name":"frontend-design"}
 {"t":0,"agent":"a70cdb4","agent_type":"executor","event":"agent_start","parent_mode":"none"}
 {"t":0,"agent":"a70cdb4","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":58049}
+{"t":0,"agent":"ad7016b","agent_type":"explore","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"ad7016b","agent_type":"explore","event":"agent_stop","success":true,"duration_ms":41888}
+{"t":0,"agent":"a5cd604","agent_type":"executor","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"a5cd604","agent_type":"executor","event":"agent_stop","success":true,"duration_ms":251894}
